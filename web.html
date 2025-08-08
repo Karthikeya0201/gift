@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raksha Bandhan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lobster&family=Montserrat&display=swap"
+    rel="stylesheet" />
+  <style>
+    img,
+    .poster,
+    body,
+    html {
+      user-select: none;
+      -webkit-user-select: none;
+      /* for Safari */
+      -moz-user-select: none;
+      /* for Firefox */
+      -ms-user-select: none;
+      /* for IE10+ */
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #b2ebf2, #81d4fa, #81d4fa);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      cursor: none;
+      /* Hide default cursor */
+    }
+
+    .back {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('./butterfly.jpeg');
+      object-fit: cover;
+      background-position: center;
+      background-repeat: repeat;
+      transform: rotate(30deg);
+      opacity: 0.08;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .poster {
+      position: relative;
+      width: 90%;
+      max-width: 800px;
+      padding: 40px 30px;
+      margin: 60px 0;
+      background: #e3f2fd;
+      border: 3px solid #bbdefb;
+      border-radius: 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      z-index: 2;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .headline {
+      font-family: 'Lobster', cursive;
+      font-size: 3rem;
+      color: #1565c0;
+      margin-bottom: 0.3em;
+    }
+
+    .subheading {
+      font-size: 1.4rem;
+      color: #333;
+      margin-bottom: 1.5em;
+    }
+
+    .illustration {
+      margin-bottom: 2em;
+    }
+
+    .illustration img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 25px;
+      box-shadow: 0 4px 20px rgba(100, 181, 246, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .illustration img:hover {
+      transform: scale(1.03);
+    }
+
+    .quote {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8rem;
+      color: #0d47a1;
+      margin: 1.5em 0;
+    }
+
+    .bottom-banner {
+      display: inline-block;
+      background: #81d4fa;
+      color: #01579b;
+      padding: 12px 25px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 1em;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .cta {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 0.8em;
+    }
+
+    .personal-note {
+      margin-top: 1.5em;
+      font-style: italic;
+      color: #1e88e5;
+      font-size: 1.1rem;
+    }
+
+    .decorations {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.4rem;
+      color: #64b5f6;
+    }
+
+    .fixed-left-image,
+    .fixed-right-image {
+      position: fixed;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.95;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 35px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .fixed-left-image {
+      bottom: 20px;
+      left: 20px;
+      width: 250px;
+    }
+
+    /* Floating Emoji Background Animation */
+    .floating-icon {
+      position: fixed;
+      font-size: 24px;
+      animation: floatEmoji 10s linear infinite;
+      z-index: 0;
+      opacity: 0.7;
+    }
+
+    @keyframes floatEmoji {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: translateY(-100vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .fixed-right-image {
+      top: 20px;
+      right: 20px;
+      width: 250px;
+      animation-delay: 1s;
+      /* Make them float opposite */
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-22px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    /* Enhanced cursor dot for bright visibility on white */
+    .cursor-dot {
+      position: fixed;
+      width: 24px;
+      height: 24px;
+      pointer-events: none;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: screen;
+      animation: fadeOut 2s ease-out forwards;
+      z-index: 9999;
+      background:
+        radial-gradient(circle at center, #ffffff 0%, #66ccff 30%, #0066ff 70%, transparent 90%);
+      box-shadow:
+        0 0 15px #66ccff,
+        0 0 25px #3399ff,
+        0 0 40px #0066ff,
+        0 0 70px #3399ff,
+        0 0 100px #66ccff;
+    }
+
+    /* Smooth fade animation for trail */
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.4);
+      }
+    }
+
+    @keyframes sparkle {
+      0% {
+        opacity: 1;
+        transform: translate(-35%, -35%) scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(-35%, -35%) scale(0.3);
+      }
+    }
+
+    /* Firecracker sparks */
+    .spark {
+      position: fixed;
+      width: 14px;
+      /* bigger */
+      height: 14px;
+      /* bigger */
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 1;
+      animation: sparkFly 1100ms forwards ease-out;
+      /* longer duration */
+      z-index: 10000;
+      mix-blend-mode: screen;
+    }
+
+    /* Odd sparks - electric blue and cyan with intense glow */
+    .spark:nth-child(odd) {
+      background: radial-gradient(circle, #00e0ff, #0099ff);
+      box-shadow:
+        0 0 40px #0904a1,
+        0 0 60px #0099ff,
+        0 0 90px #0110b1,
+        0 0 120px #3915da;
+    }
+
+    /* Even sparks - bright cyan and light blue with strong glow */
+    .spark:nth-child(even) {
+      background: radial-gradient(circle, #66f7ff, #33ccff);
+      box-shadow:
+        0 0 30px #66f7ff,
+        0 0 50px #0099ff,
+        0 0 80px #00cfff,
+        0 0 110px #00bfff;
+    }
+
+    @keyframes sparkFly {
+      to {
+        transform: translate(var(--x), var(--y)) scale(0.1);
+        opacity: 0.8;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .headline {
+        font-size: 2.2rem;
+      }
+
+      .quote {
+        font-size: 1.5rem;
+      }
+
+      .fixed-left-image,
+      .fixed-right-image {
+        width: 100px;
+      }
+    }
+
+    @media print {
+      body {
+        background: none;
+      }
+
+      .cta,
+      .fixed-left-image,
+      .fixed-right-image {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="back"></div>
+  <script>
+    /* Floating Emoji Background */
+    const emojis = ["💖", "🎉", "🎈", "🥰", "🌸"];
+    for (let i = 0; i < 40; i++) {
+      const icon = document.createElement("div");
+      icon.classList.add("floating-icon");
+      icon.style.left = Math.random() * 100 + "vw";
+      icon.style.animationDuration = (6 + Math.random() * 6) + "s";
+      icon.style.fontSize = (20 + Math.random() * 20) + "px";
+      icon.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      document.body.appendChild(icon);
+    }
+
+    /* Magical Cursor Trail */
+    document.addEventListener("mousemove", (e) => {
+      const dot = document.createElement("div");
+      dot.className = "cursor-dot";
+      dot.style.left = e.clientX + "px";
+      dot.style.top = e.clientY + "px";
+      document.body.appendChild(dot);
+      setTimeout(() => dot.remove(), 2000);
+    });
+
+    /* Firecracker Sparks on Click */
+    document.addEventListener("click", (e) => {
+      const sparkCount = 40; // number of sparks per click
+      for (let i = 0; i < sparkCount; i++) {
+        const spark = document.createElement("div");
+        spark.className = "spark";
+
+        spark.style.left = `${e.clientX}px`;
+        spark.style.top = `${e.clientY}px`;
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = 20 + Math.random() * 80;
+        const x = Math.cos(angle) * distance + "px";
+        const y = Math.sin(angle) * distance + "px";
+
+        spark.style.setProperty("--x", x);
+        spark.style.setProperty("--y", y);
+
+        document.body.appendChild(spark);
+
+        spark.addEventListener("animationend", () => {
+          spark.remove();
+        });
+      }
+    });
+  </script>
+
+  <img src="sis-2.jpg" alt="Sister 2" class="fixed-left-image" />
+  <img src="sis_3.jpg" alt="Sister 3" class="fixed-right-image" />
+
+  <div class="poster">
+    <div class="decorations">
+      <div>💖 🌸 🦋</div>
+      <div>🌞 ✨ 💗</div>
+    </div>
+
+    <div class="headline">HAPPY RAKSHA BANDHAN!</div>
+    <div class="subheading">Celebrating the Bond That Lasts Forever</div>
+
+    <div class="illustration">
+      <img src="sis_1.jpg" alt="Sisters Illustration" />
+    </div>
+
+    <div class="quote">"Happiest Raksha Bandhan Chellimmaaa"</div>
+    <p>This is our first raksha bandhan 😁</p>
+    <p>
+      I'm very lucky to have the best sister like you in my life raa. Thank you for always supporting me in everything I
+      do and for making my B.Tech journey so much happier.
+    </p>
+    <p>Life long nuvvu nannu anniyya anniyya ani pilusthavani korkuntunna.</p>
+
+    <div class="bottom-banner">August 9, 2025</div>
+
+    <div class="personal-note">For Sahasrika — My forever Sister! ❤️</div>
+  </div>
+</body>
+
+</html>
